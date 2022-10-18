@@ -31,9 +31,11 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void Fire()
     {
-        Rigidbody bullet = Instantiate(bulletPrefab, fireTransform.position, fireTransform.rotation);
-        bullet.AddRelativeForce(new Vector3(0f, 0f, bulletForce));
-        StartCoroutine(DestroyAfterTime(bullet.gameObject, timeBeforeDestroyingBullet));
+        // ??? - Create bullet
+        
+        // ??? - Add bullet force
+        
+        // ??? - Start a coroutine to destroy the bullet after "timeBeforeDestroyingBullet" time.
     }
 
     /// <summary>
