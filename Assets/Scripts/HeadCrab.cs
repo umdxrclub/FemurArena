@@ -89,35 +89,37 @@ public class HeadCrab : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float distanceToTarget = Vector3.Distance(target.position, transform.position);
-
-        // Add forward velocity.
-        if (_rigidbody.velocity.magnitude < maxCrabSpeed)
-            _rigidbody.AddRelativeForce(new Vector3(0f, 0f, crabForce));
-
-        // Add turning force towards player.
-        crabForward = transform.forward;
-        forwardToTarget = (target.position - transform.position).normalized;
-        float angle = Vector3.SignedAngle(crabForward, forwardToTarget, Vector3.up);
-        
-        if (Mathf.Abs(angle) > turnThresholdDegrees)
+        // Only move the crab if there's a target to follow.
+        if (target)
         {
-            float t = angle / 180f;
-            float torque = Mathf.Lerp(turnTorque / 2f, turnTorque, Mathf.Abs(t));
-            if (t < 0)
-                torque = -torque;
-            
-            _rigidbody.AddRelativeTorque(new Vector3(0f, torque, 0f));
-        }
+            float distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        // Add jump force.
-        if (distanceToTarget <= jumpDistance && !didJump)
-        {
-            didJump = true;
-            _rigidbody.AddRelativeForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
+            // Add forward velocity.
+            if (_rigidbody.velocity.magnitude < maxCrabSpeed)
+                _rigidbody.AddRelativeForce(new Vector3(0f, 0f, crabForce));
+
+            // Add turning force towards player.
+            crabForward = transform.forward;
+            forwardToTarget = (target.position - transform.position).normalized;
+            float angle = Vector3.SignedAngle(crabForward, forwardToTarget, Vector3.up);
+
+            if (Mathf.Abs(angle) > turnThresholdDegrees)
+            {
+                float t = angle / 180f;
+                float torque = Mathf.Lerp(turnTorque / 2f, turnTorque, Mathf.Abs(t));
+                if (t < 0)
+                    torque = -torque;
+
+                _rigidbody.AddRelativeTorque(new Vector3(0f, torque, 0f));
+            }
+
+            // Add jump force.
+            if (distanceToTarget <= jumpDistance && !didJump)
+            {
+                didJump = true;
+                _rigidbody.AddRelativeForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
+            }
         }
-        
-        
     }
     
     /// <summary>
