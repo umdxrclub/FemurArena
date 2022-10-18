@@ -1,17 +1,39 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
+/// <summary>
+/// A manager for FemurArena that spawns in enemies. 
+/// </summary>
 public class FemurArena : MonoBehaviour
 {
+    /// <summary>
+    /// The prefab of the head crab.
+    /// </summary>
     public HeadCrab headCrabPrefab;
+    
+    /// <summary>
+    /// The transform around which to spawn head crabs.
+    /// </summary>
     public Transform spawnTransform;
+    
+    /// <summary>
+    /// The transform for the crabs to target (which is the player).
+    /// </summary>
     public Transform targetTransform;
-    public float spawnRadius = 5f;
+    
+    /// <summary>
+    /// The radius to spawn head crabs around.
+    /// </summary>
+    public float spawnRadius = 20f;
+    
+    /// <summary>
+    /// The interval (in seconds) to spawn.
+    /// </summary>
     public float spawnInterval = 2f;
+    
+    /// <summary>
+    /// The limit of head crabs to spawn.
+    /// </summary>
     public int headcrabLimit = 8;
 
     // Start is called before the first frame update
@@ -40,6 +62,9 @@ public class FemurArena : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Draws a circle within the Scene View that represents the spawn area of the head crabs.
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
