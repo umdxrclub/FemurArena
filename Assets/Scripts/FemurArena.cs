@@ -39,7 +39,7 @@ public class FemurArena : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnCoroutine());
+        // ??? - Start spawn coroutine.
     }
 
     /// <summary>
@@ -52,12 +52,15 @@ public class FemurArena : MonoBehaviour
         {
             if (HeadCrab.totalHeadCrabs < headcrabLimit)
             {
-                Vector3 spawnPosition = spawnTransform.position + Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.up) * new Vector3(0,0, spawnRadius);
-                Quaternion spawnRotation =
-                    Quaternion.LookRotation((spawnTransform.position - spawnPosition).normalized, Vector3.up);
-                HeadCrab crab = Instantiate(headCrabPrefab, spawnPosition, spawnRotation);
-                crab.target = targetTransform;
+                // ??? - Determine crab spawn location, which should be somewhere along the spawn radius. 
+                
+                // ??? - Determine spawn rotation, which should be facing the "spawnTransform" location.
+               
+                // ??? - Spawn the crab
+                
+                // ??? - Set crab target.
             }
+            
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -80,6 +83,5 @@ public class FemurArena : MonoBehaviour
             Vector3 end = spawnRadius * new Vector3(Mathf.Cos(endAngle), 0, Mathf.Sin(endAngle));
             Gizmos.DrawLine(start, end);
         }
-        
     }
 }

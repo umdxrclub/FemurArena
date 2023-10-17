@@ -140,20 +140,21 @@ public class HeadCrab : MonoBehaviour
     {
         if (collision.collider.CompareTag("Bullet"))
         {
-            // Play hit sound.
-            _source.Play();
+            // Crab was hit by bullet.
             
-            // Destroy the bullet.
-            Destroy(collision.collider.gameObject);
+            // ??? - Play hit sound.
             
-            // Bullet struck the head crab, time to die.
-            StartCoroutine(ShrinkAndDie());
+            // ??? - Destroy the bullet.
+            
+            // ??? - Start ShrinkAndDie coroutine.
         } 
         else if (collision.collider.gameObject.GetComponent<Player>() is Player player)
         {
             // Crab has struck player.
-            player.PlayHurtSound();
-            Destroy(gameObject);
+            
+            // ??? - Play player hurt sound
+            
+            // ??? - Destroy the crab.
         }
     }
 
